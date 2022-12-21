@@ -20,8 +20,6 @@ data class Film(
 data class FilmGenreCrossRef(
     val filmId: String,
     val genreId: String,
-//    @PrimaryKey
-//    val fgID: String = UUID.randomUUID().toString()
 )
 
 data class FilmsWithGenres(
