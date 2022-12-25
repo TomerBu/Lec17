@@ -1,5 +1,6 @@
 package edu.tomerbu.lec17.services
 
+import edu.tomerbu.lec17.BuildConfig
 import edu.tomerbu.lec17.models.GenreResponse
 import edu.tomerbu.lec17.models.MovieResponse
 import edu.tomerbu.lec17.network.utils.TokenInterceptor
@@ -32,7 +33,7 @@ interface TMDBService {
 
             return Retrofit.Builder()
                 .client(client)
-                .baseUrl("https://api.themoviedb.org/")
+                .baseUrl(BuildConfig.TMDB_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(TMDBService::class.java)
         }
