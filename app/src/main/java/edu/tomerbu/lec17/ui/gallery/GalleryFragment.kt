@@ -25,6 +25,7 @@ class GalleryFragment : Fragment() {
         val galleryViewModel =
             ViewModelProvider(this).get(GalleryViewModel::class.java)
 
+
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

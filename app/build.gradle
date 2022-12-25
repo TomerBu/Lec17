@@ -5,6 +5,15 @@ plugins {
 }
 
 android {
+    //path to file:
+    def apiKeyPropertiesFile = rootProject.file("apikey.properties")
+
+    //properties in gradle ~ Map in Java:
+    def apiKeyProperties = new Properties()
+
+    //fill the properties map with keys/values from the file
+    apiKeyProperties.load(new FileInputStream(apiKeyPropertiesFile))
+
     namespace 'edu.tomerbu.lec17'
     compileSdk 33
 
@@ -16,6 +25,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField('String', 'TMDB_BASE_URL', apiKeyProperties['TMDB_BASE_URL'])
+        buildConfigField('String', 'TMDB_API_KEY', apiKeyProperties['TMDB_API_KEY'])
     }
 
     buildTypes {
@@ -53,6 +65,14 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+
+    //retrofit:
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    //logger for retrofit
+    implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
 
 
     def room_version = "2.4.3"
