@@ -38,6 +38,10 @@ data class Movie constructor(
     @Ignore
     @SerializedName("genre_ids")
     val genreIds: List<Int> = mutableListOf()
+
+    //computed properties
+    val posterUrl get() = "https://image.tmdb.org/t/p/w500${posterPath}"
+    val backdropUrl get() = "https://image.tmdb.org/t/p/w500${backdropPath}"
 }
 
 //MANY TO MANY?

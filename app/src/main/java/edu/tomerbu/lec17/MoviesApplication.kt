@@ -23,7 +23,7 @@ class MoviesApplication : Application() {
         }
 
         val repository: MovieRepository by lazy {
-            MovieRepository(db.filmDao())
+            MovieRepository(db.movieDao())
         }
 
         val networkStatusChecker: NetworkStatusChecker by lazy{

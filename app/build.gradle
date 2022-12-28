@@ -74,6 +74,10 @@ dependencies {
     //logger for retrofit
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
 
+    //image loader:
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+
 
     def room_version = "2.4.3"
 
@@ -90,4 +94,6 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation "androidx.room:room-paging:$room_version"
+
+    implementation 'androidx.core:core-splashscreen:1.0.0'
 }

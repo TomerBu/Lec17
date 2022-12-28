@@ -4,20 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import edu.tomerbu.lec17.database.dao.FilmDao
-import edu.tomerbu.lec17.database.dao.PeopleDao
-import edu.tomerbu.lec17.models.*
+import edu.tomerbu.lec17.database.dao.MovieDao
+import edu.tomerbu.lec17.models.Genre
+import edu.tomerbu.lec17.models.Movie
+import edu.tomerbu.lec17.models.MovieGenreCrossRef
 
 
 const val DB_NAME = "AppDatabase"
-const val DB_VERSION = 2
+const val DB_VERSION = 6 //when we change the db version - the db is destroyed and re-created
 
-@Database(entities = [Person::class, Dog::class, Review::class, Film::class, FGenre::class, FilmGenreCrossRef::class], version = DB_VERSION)
+@Database(entities = [Movie::class, Genre::class, MovieGenreCrossRef::class], version = DB_VERSION)
 abstract class AppDatabase : RoomDatabase() {
     //expose the dao's:
-
-    abstract fun peopleDao(): PeopleDao
-    abstract fun filmDao(): FilmDao
+    abstract fun movieDao(): MovieDao
 
     companion object {
         fun create(context: Context): AppDatabase =
