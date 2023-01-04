@@ -1,6 +1,7 @@
 package edu.tomerbu.lec17.database.dao
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -39,4 +40,12 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addMovieGenreCrossRefs(movieGenreCrossRef: List<MovieGenreCrossRef>)
+
+
+    //query all by page for pagination:
+    @Query("SELECT * FROM Movie ORDER BY page")
+    fun getMoviesPaged(): PagingSource<Int, Movie>
+    //delete all for pagination refresh
+    @Query("DELETE FROM Movie")
+    suspend fun clearAllMovies()
 }

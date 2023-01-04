@@ -33,6 +33,7 @@ data class Movie constructor(
     @SerializedName("vote_count")
     val voteCount: Int,
 
+    var page: Int = 1
 ){
     //Room (Don't save the genreIds in the Movie Table)
     @Ignore

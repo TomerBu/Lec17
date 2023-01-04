@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import edu.tomerbu.lec17.database.AppDatabase
 import edu.tomerbu.lec17.network.NetworkStatusChecker
 import edu.tomerbu.lec17.repository.MovieRepository
+import edu.tomerbu.lec17.services.TMDBService
 
 class MoviesApplication : Application() {
     override fun onCreate() {
@@ -18,7 +19,7 @@ class MoviesApplication : Application() {
         private lateinit var instance: MoviesApplication
 
         //משתנה ייוצר רק בעת השימוש הראשון בו
-        private val db: AppDatabase by lazy {
+        val db: AppDatabase by lazy {
             AppDatabase.create(instance)
         }
 
@@ -26,7 +27,11 @@ class MoviesApplication : Application() {
             MovieRepository(db.movieDao())
         }
 
-        val networkStatusChecker: NetworkStatusChecker by lazy{
+        val tmdbService: TMDBService by lazy {
+            TMDBService.create()
+        }
+
+        val networkStatusChecker: NetworkStatusChecker by lazy {
             val connectivityManager = instance.getSystemService(ConnectivityManager::class.java)
             NetworkStatusChecker(connectivityManager)
         }
