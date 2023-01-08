@@ -13,19 +13,19 @@ data class Movie constructor(
 
     val adult: Boolean,
     @SerializedName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
 
     @SerializedName("original_language")
-    val originalLanguage: String,
+    val originalLanguage: String?,
 
     @SerializedName("original_title")
-    val originalTitle: String,
-    val overview: String,
+    val originalTitle: String?,
+    val overview: String?,
     val popularity: Double,
     @SerializedName("poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @SerializedName("release_date")
-    val releaseDate: String,
+    val releaseDate: String?,
     val title: String,
     val video: Boolean,
     @SerializedName("vote_average")

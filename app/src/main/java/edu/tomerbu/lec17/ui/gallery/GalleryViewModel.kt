@@ -24,8 +24,10 @@ class GalleryViewModel : ViewModel() {
             prefetchDistance = 10, //המרחק שאליו עושים scroll לפני append
             initialLoadSize = TMDB_PAGE_SIZE * 2,
         ), pagingSourceFactory = {
+            //db reference:
             db.movieDao().getMoviesPaged()
         },
+        //ref to the remote mediator class
         remoteMediator = MoviesRemoteMediator(service, db)
     ).liveData
 }

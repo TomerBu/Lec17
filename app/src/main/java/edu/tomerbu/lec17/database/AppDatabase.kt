@@ -13,7 +13,7 @@ import edu.tomerbu.lec17.models.RemoteKeys
 
 
 const val DB_NAME = "AppDatabase"
-const val DB_VERSION = 1 //when we change the db version - the db is destroyed and re-created
+const val DB_VERSION = 2 //when we change the db version - the db is destroyed and re-created
 
 @Database(entities = [Movie::class, Genre::class, MovieGenreCrossRef::class, RemoteKeys::class], version = DB_VERSION)
 abstract class AppDatabase : RoomDatabase() {
