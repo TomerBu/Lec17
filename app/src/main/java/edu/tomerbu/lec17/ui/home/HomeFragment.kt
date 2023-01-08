@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import edu.tomerbu.lec17.R
 import edu.tomerbu.lec17.databinding.FragmentHomeBinding
 import edu.tomerbu.lec17.ui.adapters.MovieAdapter
 
@@ -36,7 +39,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel.movies.observe(viewLifecycleOwner) {
             val movies = it.map { m -> m.movie }
-            val adapter = MovieAdapter(movies)
+            val adapter = MovieAdapter(movies) {
+                //Toast.makeText(requireContext(), "Clicked: ${it.title}", Toast.LENGTH_SHORT).show()
+                val bundle = Bundle()
+                bundle.putLong("id", it.movieId)
+
+                findNavController().navigate(R.id.action_nav_home_to_detailsFragment, bundle)
+            }
             binding.rvMovies.adapter = adapter
             binding.rvMovies.layoutManager = LinearLayoutManager(
                 requireContext(),

@@ -31,7 +31,11 @@ data class MovieDetailsResponse(
     var videos: VideosResponse?,
     var similar: MovieResponse?,
     var recommendations: MovieResponse?
-)
+){
+    //computed properties
+    val posterUrl get() = "https://image.tmdb.org/t/p/w500${posterPath}"
+    val backdropUrl get() = "https://image.tmdb.org/t/p/w500${backdropPath}"
+}
 
 data class VideosResponse(
     val results: List<MediaStore.Video>

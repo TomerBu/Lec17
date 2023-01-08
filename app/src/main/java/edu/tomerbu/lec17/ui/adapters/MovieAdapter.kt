@@ -8,7 +8,8 @@ import com.squareup.picasso.Picasso
 import edu.tomerbu.lec17.databinding.MovieItemBinding
 import edu.tomerbu.lec17.models.Movie
 
-class MovieAdapter(val movies: List<Movie>) : Adapter<MovieAdapter.VH>() {
+class MovieAdapter(private val movies: List<Movie>, private val callback: (Movie) -> Unit) :
+    Adapter<MovieAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val inflater = LayoutInflater.from(parent.context)
@@ -16,11 +17,15 @@ class MovieAdapter(val movies: List<Movie>) : Adapter<MovieAdapter.VH>() {
         return VH(binding)
     }
 
-    override fun onBindViewHolder(holder:  VH, position: Int) {
+    override fun onBindViewHolder(holder: VH, position: Int) {
         val movie = movies[position]
         //bind the text:
         holder.binding.tvTitle.text = movie.title
         Picasso.get().load(movie.posterUrl).into(holder.binding.imagePoster)
+
+        holder.binding.root.setOnClickListener {
+            callback(movie)
+        }
     }
 
     override fun getItemCount() = movies.size
